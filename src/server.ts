@@ -1,18 +1,21 @@
+import 'dotenv/config'
 import { fastify } from 'fastify'
 
 import { getAllPromptsRoute } from './routes/get-all-prompts'
-import { uploadVideo } from './routes/upload-video'
+import { uploadVideoRoute } from './routes/upload-video'
+import { createTranscriptionRoute } from './routes/create-transcription'
 
 const app = fastify()
 
-const port = 3333
+const port = Number(process.env.DATABASE_PORT)
 
 app.register(getAllPromptsRoute)
-app.register(uploadVideo)
+app.register(uploadVideoRoute)
+app.register(createTranscriptionRoute)
 
 app
   .listen({
-    port: 3333,
+    port,
   })
   .then(() => {
     console.log(`HTTP server running on port ${port} 🚀`)
