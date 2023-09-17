@@ -25,7 +25,7 @@ model Video {
 model Prompt {
   id       String @id @default(uuid())
   title    String
-  template String
+  template String @db.LongText
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
